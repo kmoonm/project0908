@@ -19,7 +19,7 @@
 	String name = request.getParameter("name");
 	// 테스트
 	// System.out.printf("%s, %s, %s\n",id, pass, name);
-
+try {
 	// 데이터베이스에서는 문자열형이라고 알아서 인식함
 	// 데이터베이스에 데이터 넘겨주기
 	String sql = "INSERT INTO membertable(id, password, name) VALUES(?,?,?)";
@@ -29,6 +29,12 @@
 	ps.setString(3, name);
 	ps.executeUpdate();
 	System.out.println("데이터 삽입에 성공했습니다.");
+} catch(Exception e) {
+	System.out.println("데이터 삽입에 실패했습니다.");
+	e.printStackTrace();
+} finally {
+	conn.close();
+}
 
 %>
 <h1>아이디 : <%= id %></h1>
